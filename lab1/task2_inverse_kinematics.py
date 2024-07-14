@@ -45,7 +45,7 @@ class MetaData:
         path = path2 + list(reversed(path1))
         path_name = [self.joint_name[i] for i in path]
         return path, path_name, path1, path2
-    
+
 
 
 
@@ -63,7 +63,6 @@ def part1_simple(viewer, target_pos):
     viewer.show_pose(joint_name, joint_position, joint_orientation)
     viewer.run()
     pass
-
 
 def part1_hard(viewer, target_pos):
     """
@@ -105,7 +104,6 @@ def part1_animation(viewer, target_pos):
     handle.update_func(viewer)
     viewer.update_marker_func = handle.update_func
     viewer.run()
-
 
 def part2(viewer, bvh_name):
     motion_data = load_motion_data(bvh_name)
@@ -163,12 +161,11 @@ def bonus(viewer, left_target_pos, right_target_pos):
     viewer.update_marker_func = handle.update_func
     viewer.run()
     
-
 def main():
     viewer = SimpleViewer()
     
     # part1
-    # part1_simple(viewer, np.array([0.5, 0.75, 0.5]))
+    part1_simple(viewer, np.array([0.5, 0.75, 0.5]))
     # part1_hard(viewer, np.array([0.5, 0.5, 0.5]))
     # part1_animation(viewer, np.array([0.5, 0.5, 0.5]))
     

@@ -118,17 +118,23 @@ def part2_forward_kinematics(joint_name, joint_parent, joint_offset, motion_data
         else:
             # Qi = Qi-parent * bvh_channels_get_i_rotation
             # Pi = Pi-parent + offset-i * Oi-parent.T ,  note: Raw Vector * transpose Right Rotation matrix
+            
+            
             joint_orientation = R.from_quat(joint_orientations[joint_parent[i]][0]) * R.from_euler('XYZ', joint_local_rotation[i], degrees=True)
             joint_position = joint_positions[joint_parent[i]] + joint_offset[i] * np.asmatrix(R.from_quat(joint_orientations[joint_parent[i]][0]).as_matrix()).transpose()
         joint_positions.append(np.array(joint_position))
         joint_orientations.append(joint_orientation.as_quat().reshape(1, -1))
 
+
+    # print(joint_positions)
+    # print(joint_orientations)
     joint_positions = np.concatenate(joint_positions, axis=0)
     joint_orientations = np.concatenate(joint_orientations, axis=0)
+    # print(joint_positions)
+    # print(joint_orientations)
+    # print(joint_positions.shape)
+    # print(joint_orientations.shape)
     return joint_positions, joint_orientations
-
-
-
 
     # joint_positions = None
     # joint_orientations = None
